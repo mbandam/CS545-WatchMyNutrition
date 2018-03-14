@@ -3,9 +3,9 @@ This is a class project for CS545.
 This is a web based application to manage an individual’s daily nutrition intake based on their age, height, weight, vital signs and lifestyle. The application will provide food suggestions per week or per day basis based on the food consumed in recent past. The app’s motive is to ensure the person has a balanced diet. The user can select one of the suggestions and based on this the app can provide a link to a food delivery app that can deliver the suggested dish from a nearby restaurant or a list of ingredients to purchase from a store to make the dish.
 
 List of Team Members:
-Dhavala Manjunatha
-Harishkumar Jayamurali
-Mounika Bandam
+Dhavala Manjunatha, 
+Harishkumar Jayamurali, 
+Mounika Bandam, 
 Nikhil Ravi
 
 User Story:
