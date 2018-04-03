@@ -1,5 +1,5 @@
-
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css"/>
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
@@ -7,14 +7,34 @@
             <div class="main-box no-header clearfix">
                 <div class="main-box-body clearfix">
                    <div class="table-responsive">
-                      
+                       <div class="dropdown">
+                            <button class="dropbtn">Select Meal</button>
+                           <div class = "dropdown-content">
+                               <a href='#'> Breakfast </a>
+                               <a href='#'> Lunch </a>
+                               <a href='#'> Dinner </a>
+                        <!-- <select>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                        </select> -->
+                        </div>
+                       </div>
+                       <br></br>
+                       <button id="nut" type="button"> Nutritious</button>
+                       <button id="nonnut" type="button"> Non Nutritious</button>
+                       <br></br>
+                       <div class="slidecontainer">
+                            <input type="range" min="1" max="10" value="10" class="slider" default="5" id="myRange">
+                        </div>
+                        <br></br>
+                        <button id="submit" type="button"> Submit </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 
