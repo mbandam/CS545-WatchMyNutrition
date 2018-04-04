@@ -12,7 +12,15 @@ let exportedmethods = {
     //    if(!meal && !type && !scale)
     //        return ""
     // },
-
+    async getDietDataByUserId(userId)  {
+        if(!userId) {
+            throw "Error occurred !! Invalid user !!";
+        }
+        const dietCollection = await dietType();
+        const dietOfUser = await dietCollection.find({ "userId": userId }).sort({timestamp:-1}).toArray();
+        return dietOfUser;
+    },
+    
     async userDietType (meal) {
 
                 const dietCollection = await dietType();
