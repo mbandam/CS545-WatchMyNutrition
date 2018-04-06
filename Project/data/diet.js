@@ -21,17 +21,60 @@ let exportedmethods = {
         return dietOfUser;
     },
     
-    async userDietType (meal) {
+   async get(timestamp){
+        const dietCollection = await dietType();
+        let meal=await dietCollection.findOne({timestamp:timestamp});
+        if(meal)
+            return meal;
+        else return undefined;
+    }, 
 
-                const dietCollection = await dietType();
-        
-                const newUser = {
-                    mealType: meal.meal
+    async insert(meal) {
+        const dietCollection = await dietType();
+        meal.breakfast=0;
+        meal.lunch=0;
+        meal.dinner=0;
+        switch(meal.meal){
+            case "breakfast":
+            meal.breakfast=meal.range;
+            break;
+            case "lunch":
+            meal.lunch=meal.range;
+            break;
+            case "dinner":
+            meal.dinner=meal.range;
+            break;
+        }
+        meal.avg=meal.range/3;
+        delete meal.meal;
+        delete meal.range;
+        const data = await dietCollection.insertOne(meal);
+        if (data.insertedCount == 0)
+            throw "Error insterting data";
+        return meal;
+    }, 
 
-                };
-                console.log(newUser);
-            }
-    
+    async update(meal){
+        const dietCollection = await dietType();
+        switch(meal.meal){
+            case "breakfast":
+            meal.breakfast=meal.range;
+            break;
+            case "lunch":
+            meal.lunch=meal.range;
+            break;
+            case "dinner":
+            meal.dinner=meal.range;
+            break;
+        }
+        meal.avg=(meal.dinner+meal.lunch+meal.breakfast)/3;
+        delete meal.meal;
+        delete meal.range;
+        const data = await dietCollection.updateOne({_id:meal._id},{$set:meal});
+        if (data.modifiedCount == 0)
+            throw "Error updating data";
+        return data;
+    }
 }
 
 module.exports = exportedMethods;
