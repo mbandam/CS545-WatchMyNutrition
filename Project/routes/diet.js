@@ -11,23 +11,50 @@ const userData = require("../data/users");
       };
       console.log(newDiet);
       
-      req.flash('success_msg', 'You are registered and can now login');
-      res.redirect('/users/login');  
 });
-
-*/
 
 var express = require('express'),
     app = express();
 
 app.use(express.bodyParser());
 
-// as only one page can use res.sendfile to render the page which will contain the drop   downs
 app.get('/', function (req, res) {
     res.sendfile('views/users/dashboard');
 });
 
 app.get('/getMeal', function (req, res) {
-    // If it's not showing up, just use req.body to see what is actually being passed.
     console.log(req.body.meal);
 });
+
+*/
+
+router.post('/getMeal', async (req, res, next) => {
+    let timestamp=new Date().toISOString().slice(0,10);
+    //timestamp.setHours(0,0,0,0);
+    let meal = {
+        userId: req.user._id,
+        meal: req.body.meal,
+        timestamp:timestamp,
+        range: parseInt(req.body.myRange, 10),
+        foodType: req.body.foodType
+    }    
+    try {
+        let data=await dietData.get(timestamp);
+        if(data){
+            data.meal=meal.meal;
+            data.range=meal.range;
+            data=await dietData.update(data);
+        }
+        else 
+            data = await dietData.insert(meal);
+        //res.json({ "meal": data });
+        next();
+    }
+    catch (error) {
+        res.json({ "error": error })
+    }
+}); 
+
+
+
+module.exports = router;
