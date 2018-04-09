@@ -11,7 +11,7 @@ $(document).ready(function(){
 
       var chartProperties = {
         "caption": "Variation of your nutrition levels with date",
-        "xAxisName": "Date",
+        "xAxisName": "Date (mm/dd)",
         "yAxisName": "Nutrition Value"
       };
 

@@ -32,7 +32,7 @@ router.post('/getMeal', async (req, res, next) => {
     let timestamp=new Date().toISOString().slice(0,10);
     //timestamp.setHours(0,0,0,0);
     let meal = {
-        userId: req.user._id,
+        user_id: req.user._id,
         meal: req.body.meal,
         timestamp:timestamp,
         range: parseInt(req.body.myRange, 10),

@@ -82,16 +82,16 @@ async function runSetup() {
 
     dietCollection = await db.createCollection(diet);
 
-    var dietJack0 = dietDoc("jack_d", "03/24/2018", 8, 5, 5, 6);
-    var dietJack1 = dietDoc("jack_d", "03/25/2018", 7, 6, 2, 5);
-    var dietJack2 = dietDoc("jack_d", "03/26/2018", 6, 9, 9, 8);
-    var dietJack3 = dietDoc("jack_d", "03/27/2018", 7, 5, 9, 7);
-    var dietJack4 = dietDoc("jack_d", "03/28/2018", 8, 5, 5, 6);
-    var dietJack5 = dietDoc("jack_d", "03/29/2018", 7, 5, 9, 7);
-    var dietJack6 = dietDoc("jack_d", "03/30/2018", 6, 9, 9, 8);
-    var dietJack7 = dietDoc("jack_d", "03/31/2018", 4, 7, 4, 5);
-    var dietJack8 = dietDoc("jack_d", "04/01/2018", 2, 10, 9, 7);
-    var dietJack9 = dietDoc("jack_d", "04/02/2018", 9, 9, 9, 9);
+    var dietJack0 = dietDoc(userJack._id, "03/24/2018", 8, 5, 5, 6);
+    var dietJack1 = dietDoc(userJack._id, "03/25/2018", 7, 6, 2, 5);
+    var dietJack2 = dietDoc(userJack._id, "03/26/2018", 6, 9, 9, 8);
+    var dietJack3 = dietDoc(userJack._id, "03/27/2018", 7, 5, 9, 7);
+    var dietJack4 = dietDoc(userJack._id, "03/28/2018", 8, 5, 5, 6);
+    var dietJack5 = dietDoc(userJack._id, "03/29/2018", 7, 5, 9, 7);
+    var dietJack6 = dietDoc(userJack._id, "03/30/2018", 6, 9, 9, 8);
+    var dietJack7 = dietDoc(userJack._id, "03/31/2018", 4, 7, 4, 5);
+    var dietJack8 = dietDoc(userJack._id, "04/01/2018", 2, 10, 9, 7);
+    var dietJack9 = dietDoc(userJack._id, "04/02/2018", 9, 9, 9, 9);
 
     dietList = [];
     dietList.push(dietJack0);
@@ -113,7 +113,7 @@ async function runSetup() {
     //insert and check if inserted
     res = await dietCollection.insertMany(dietList);
     dietins = await dietCollection.find().toArray();
-    //console.log(dietins);
+    console.log(dietins);
 
 
     return usersins;

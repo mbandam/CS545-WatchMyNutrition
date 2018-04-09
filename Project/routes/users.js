@@ -4,9 +4,7 @@ var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 const data = require("../data");
 const userData = data.users;
-const travelData = data.travel;
-const budgetData = data.budget;
-const connectionData=data.connection;
+const dietData=data.diet;
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 var cloudinary = require('cloudinary').v2;
@@ -178,55 +176,36 @@ router.get('/graphs', require('connect-ensure-login').ensureLoggedIn("/"),
 router.get('/getGraphs', require('connect-ensure-login').ensureLoggedIn("/"),
 async function (req, res) {
 
-  let monthArray = [];
-    let petrolPrices = [];
+  console.log("get graphs");
+  console.log(req.user._id);
+  let docs= await dietData.getDietDataByUserId(req.user._id);
+  
+  console.log(docs);
+  let datesArray = [];
+    let nutritionValues = [];
   try {
-    docs=[
-      {
-        "date": "01-04-2018", "nutrition" : 6
-      },
-      {
-        "date": "02-04-2018", "nutrition" : 5
-      },
-      {
-        "date": "03-04-2018", "nutrition" : 6
-      },
-      {
-        "date": "04-04-2018", "nutrition" : 3
-      },
-      {
-        "date": "05-04-2018", "nutrition" : 8
-      },
-      {
-        "date": "06-04-2018", "nutrition" : 9
-      },
-      {
-        "date": "07-04-2018", "nutrition" : 1
-      }
-      
-    ]
+    
     for ( index in docs){
       var doc = docs[index];
       //category array
-      var month = doc['date'];
+      var date = doc['timestamp'].slice(0,5);
       //series 1 values array
-      var petrol = doc['nutrition'];
-      //series 2 values array
+      var nutritionAverage = doc['average'];
       
-      monthArray.push({"label": month});
-      petrolPrices.push({"value" : petrol});
+      datesArray.push({"label": date});
+      nutritionValues.push({"value" : nutritionAverage});
      
     }
     var dataset = [
       {
         "seriesname" : "Nutrition Values",
-        "data" : petrolPrices
+        "data" : nutritionValues
       }
     ];
 
     var response = {
       "dataset" : dataset,
-      "categories" : monthArray
+      "categories" : datesArray
     };
     res.json(response);
     //res.render('users/graphs',{data:response}  );

@@ -17,7 +17,7 @@ let exportedmethods = {
             throw "Error occurred !! Invalid user !!";
         }
         const dietCollection = await dietType();
-        const dietOfUser = await dietCollection.find({ "userId": userId }).sort({timestamp:-1}).toArray();
+        const dietOfUser = await dietCollection.find({ "user_id": userId }).sort({timestamp:-1}).toArray();
         return dietOfUser;
     },
     
@@ -46,8 +46,6 @@ let exportedmethods = {
             break;
         }
         meal.avg=meal.range/3;
-        delete meal.meal;
-        delete meal.range;
         const data = await dietCollection.insertOne(meal);
         if (data.insertedCount == 0)
             throw "Error insterting data";
@@ -68,8 +66,6 @@ let exportedmethods = {
             break;
         }
         meal.avg=(meal.dinner+meal.lunch+meal.breakfast)/3;
-        delete meal.meal;
-        delete meal.range;
         const data = await dietCollection.updateOne({_id:meal._id},{$set:meal});
         if (data.modifiedCount == 0)
             throw "Error updating data";
@@ -77,4 +73,4 @@ let exportedmethods = {
     }
 }
 
-module.exports = exportedMethods;
+module.exports = exportedmethods;
