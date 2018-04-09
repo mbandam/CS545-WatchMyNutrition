@@ -168,6 +168,74 @@ router.get('/register', async function (req, res) {
   }
 	
 });
+
+router.get('/graphs', require('connect-ensure-login').ensureLoggedIn("/"),
+  async function (req, res) {
+  res.render('users/graphs',
+  {user: req.user});
+});
+// extra
+router.get('/getGraphs', require('connect-ensure-login').ensureLoggedIn("/"),
+async function (req, res) {
+
+  let monthArray = [];
+    let petrolPrices = [];
+  try {
+    docs=[
+      {
+        "date": "01-04-2018", "nutrition" : 6
+      },
+      {
+        "date": "02-04-2018", "nutrition" : 5
+      },
+      {
+        "date": "03-04-2018", "nutrition" : 6
+      },
+      {
+        "date": "04-04-2018", "nutrition" : 3
+      },
+      {
+        "date": "05-04-2018", "nutrition" : 8
+      },
+      {
+        "date": "06-04-2018", "nutrition" : 9
+      },
+      {
+        "date": "07-04-2018", "nutrition" : 1
+      }
+      
+    ]
+    for ( index in docs){
+      var doc = docs[index];
+      //category array
+      var month = doc['date'];
+      //series 1 values array
+      var petrol = doc['nutrition'];
+      //series 2 values array
+      
+      monthArray.push({"label": month});
+      petrolPrices.push({"value" : petrol});
+     
+    }
+    var dataset = [
+      {
+        "seriesname" : "Nutrition Values",
+        "data" : petrolPrices
+      }
+    ];
+
+    var response = {
+      "dataset" : dataset,
+      "categories" : monthArray
+    };
+    res.json(response);
+    //res.render('users/graphs',{data:response}  );
+  }
+  catch (e) {
+    res.status(500).json({ error: e });
+  }
+	
+});
 // Register User
 router.post('/register', multipartMiddleware, async function(req, res){
 

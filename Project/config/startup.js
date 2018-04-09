@@ -5,11 +5,11 @@ const users = "usersData"
 const settings = {
     mongoConfig: {
         serverUrl: "mongodb://localhost:27017/",
-        database: "effugio"
+        database: "watchmynutrition"
     }
 };
 
-//NM - added email
+
 var makeDoc = function (user_id, name, hashedPassword, dob, gender, location, occupation, activity,
      email,weight) {
     return {
