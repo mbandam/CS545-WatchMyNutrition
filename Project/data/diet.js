@@ -12,18 +12,65 @@ let exportedmethods = {
     //    if(!meal && !type && !scale)
     //        return ""
     // },
-
-    async userDietType (meal) {
-
-                const dietCollection = await dietType();
-        
-                const newUser = {
-                    mealType: meal.meal
-
-                };
-                console.log(newUser);
-            }
+    async getDietDataByUserId(userId)  {
+        if(!userId) {
+            throw "Error occurred !! Invalid user !!";
+        }
+        const dietCollection = await dietType();
+        const dietOfUser = await dietCollection.find({ "user_id": userId }).sort({timestamp:-1}).toArray();
+        return dietOfUser;
+    },
     
+   async get(timestamp){
+        const dietCollection = await dietType();
+        let meal=await dietCollection.findOne({timestamp:timestamp});
+        if(meal)
+            return meal;
+        else return undefined;
+    }, 
+
+    async insert(meal) {
+        const dietCollection = await dietType();
+        meal.breakfast=0;
+        meal.lunch=0;
+        meal.dinner=0;
+        switch(meal.meal){
+            case "breakfast":
+            meal.breakfast=meal.range;
+            break;
+            case "lunch":
+            meal.lunch=meal.range;
+            break;
+            case "dinner":
+            meal.dinner=meal.range;
+            break;
+        }
+        meal.avg=meal.range/3;
+        const data = await dietCollection.insertOne(meal);
+        if (data.insertedCount == 0)
+            throw "Error insterting data";
+        return meal;
+    }, 
+
+    async update(meal){
+        const dietCollection = await dietType();
+        switch(meal.meal){
+            case "breakfast":
+            meal.breakfast=meal.range;
+            break;
+            case "lunch":
+            meal.lunch=meal.range;
+            break;
+            case "dinner":
+            meal.dinner=meal.range;
+            break;
+        }
+        meal.avg=(meal.dinner+meal.lunch+meal.breakfast)/3;
+        const data = await dietCollection.updateOne({_id:meal._id},{$set:meal});
+        if (data.modifiedCount == 0)
+            throw "Error updating data";
+        return data;
+    }
 }
 
-module.exports = exportedMethods;
+module.exports = exportedmethods;

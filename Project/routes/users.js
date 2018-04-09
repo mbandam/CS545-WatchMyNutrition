@@ -4,9 +4,7 @@ var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 const data = require("../data");
 const userData = data.users;
-const travelData = data.travel;
-const budgetData = data.budget;
-const connectionData=data.connection;
+const dietData=data.diet;
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 var cloudinary = require('cloudinary').v2;
@@ -165,6 +163,55 @@ router.get('/register', async function (req, res) {
   }
   catch (e) {
     response.status(500).json({ error: e });
+  }
+	
+});
+
+router.get('/graphs', require('connect-ensure-login').ensureLoggedIn("/"),
+  async function (req, res) {
+  res.render('users/graphs',
+  {user: req.user});
+});
+// extra
+router.get('/getGraphs', require('connect-ensure-login').ensureLoggedIn("/"),
+async function (req, res) {
+
+  console.log("get graphs");
+  console.log(req.user._id);
+  let docs= await dietData.getDietDataByUserId(req.user._id);
+  
+  console.log(docs);
+  let datesArray = [];
+    let nutritionValues = [];
+  try {
+    
+    for ( index in docs){
+      var doc = docs[index];
+      //category array
+      var date = doc['timestamp'].slice(0,5);
+      //series 1 values array
+      var nutritionAverage = doc['average'];
+      
+      datesArray.push({"label": date});
+      nutritionValues.push({"value" : nutritionAverage});
+     
+    }
+    var dataset = [
+      {
+        "seriesname" : "Nutrition Values",
+        "data" : nutritionValues
+      }
+    ];
+
+    var response = {
+      "dataset" : dataset,
+      "categories" : datesArray
+    };
+    res.json(response);
+    //res.render('users/graphs',{data:response}  );
+  }
+  catch (e) {
+    res.status(500).json({ error: e });
   }
 	
 });

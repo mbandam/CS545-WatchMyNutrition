@@ -1,6 +1,31 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css"/>
 <hr>
+
+{{#if errorMessage }}
+    <div class="row" id="errorinfo">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="alert alert-danger" role="alert">
+                {{errorMessage}}
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+{{/if}}
+
+{{#if isSuccess }}
+    <div class="row" id="errorinfo">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="alert alert-success" role="alert">
+                You have submitted the value successfully!!
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+{{/if}}
+
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-lg-12">
@@ -18,15 +43,31 @@
                        </div>
                                -->
                         <form method="POST" action="/getMeal">
-                       <select name = "Meal" form="Meal">
-                            <option value="Breakfast">Breakfast</option>
-                            <option value="Lunch">Lunch</option>
-                            <option value="Dinner">Dinner</option>
-                        </select>
-                        </form>
-                    <br></br> 
+                       <!--   <p> Please select the Meal: </p>
+                            <select name="meal">
+                                <option name = "breakfast" value="Breakfast">Breakfast</option>
+                                <option name = "lunch" value="Lunch">Lunch</option>
+                                <option name = "dinner" value="Dinner">Dinner</option>
+                            </select>
+                            <br></br> -->
+                        <div class="mealType">
+                                    <input type="radio" name="meal" value="breakfast"> Breakfast <br>
+
+                                    <input type="radio" name="meal" value="lunch"> Lunch <br>
+
+                                    <input type="radio" name="meal" value="dinner"> Dinner
+                                </div> 
+                             <!--   <p>Please select the type of food you had: </p>
+                                <div class="mealType">
+                                    <input type="radio" name="foodType" value="nutritious"> Nutritious <br>
+
+                                    <input type="radio" name="foodType" value="nonnutritious"> Non Nutritious <br>
+                                </div> -->
+                              <!--  <button id="nut" type="button"> Nutritious</button>
+                                <button id="nonnut" type="button"> Non Nutritious</button>
+                                <br></br>  -->
                     <div class="slidecontainer">
-  <input type="range" min="1" max="10" value="10" class="slider" id="myRange">
+  <input type="range" min="1" max="10" value="5" class="slider" id="myRange">
 </div>
                     <!--   <br></br>
                        <button id="nut" type="button"> Nutritious</button>
