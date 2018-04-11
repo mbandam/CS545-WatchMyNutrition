@@ -7,6 +7,32 @@ var ObjectID = require('mongodb').ObjectID;
 var bcrypt = Promise.promisifyAll(require("bcrypt"));
 
 let exportedmethods = {
+
+    async getDatesinRangeForUser(userId, dates){
+        if(!userId) {
+            throw "user id cannot be null";
+        }
+        if(!dates ) {
+            throw "dates cannot be null";
+        }
+        if(dates.length == 0){
+            throw "dates cannot be empty";
+        }
+        const dietCollection = await dietType();
+        const dietOfUser = await dietCollection.find({ 
+            $and: [
+                // {location_pref:{ $in: user.location_pref }},
+                { "user_id": userId  },
+                { timestamp: { $in: dates } },
+
+            ]
+            
+        }).sort({timestamp:-1}).toArray();
+        return dietOfUser;
+
+       
+
+    },
    
     //async dieting ( meal, type, scale) {
     //    if(!meal && !type && !scale)

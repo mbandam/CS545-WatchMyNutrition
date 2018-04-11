@@ -1,8 +1,26 @@
 
-<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/style.css"/>
+<link rel="stylesheet" href="/css/bootstrap.css" />
  
 <hr>
 
+    <div>
+    <div class="row">
+        <div class="col" >
+                <input type="radio" name="timeline" value="oneweek" class="timeline" checked> last week data 
+               
+                
+                <input type="radio" name="timeline" value="onemonth" class="timeline"> last month data 
+                
+
+                <input type="radio" name="timeline" value="sixmonths" class="timeline"> last six months
+        </div>
+        <div class="alert alert-success" name="error" id="error" hidden>
+        <p id="error" >No data found. Start logging data to track your nutrition values!</p>
+        </div>
+    </div>
+    </div>
     <div id="chart-location"></div>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
