@@ -31,6 +31,7 @@ app.get('/getMeal', function (req, res) {
 router.post('/getMeal', async (req, res, next) => {
     let timestamp=new Date().toISOString().slice(0,10);
     //timestamp.setHours(0,0,0,0);
+    console.log(req.body.myRange);
     let meal = {
         user_id: req.user._id,
         meal: req.body.meal,
