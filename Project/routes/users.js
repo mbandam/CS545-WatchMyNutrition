@@ -15,6 +15,57 @@ cloudinary.config({
 });
 var setCookie = require('set-cookie-parser');
 
+let prevMonthLastDate=0;
+let prevMonthFirstDate=0; 
+let lastWeekStart=0;
+let lastWeekEnd=0;
+
+function setFirstAndLastDayOfLastMonth(){
+  var now = new Date();
+
+ let x = new Date(now.getFullYear(), now.getMonth(), 0);
+ let y= new Date(now.getFullYear() - (now.getMonth() > 0 ? 0 : 1), (now.getMonth() - 1 + 12) % 12, 1);
+ prevMonthLastDate =formatDate(x);
+ prevMonthFirstDate=formatDate(y)
+ console.log(prevMonthFirstDate + ' - ' + prevMonthLastDate);
+}
+
+var formatDateComponent = function(dateComponent) {
+  return (dateComponent < 10 ? '0' : '') + dateComponent;
+};
+
+var formatDate = function(date) {
+  return formatDateComponent(date.getMonth() + 1) + '/' + formatDateComponent(date.getDate()) + '/' + date.getFullYear();
+};
+
+var addDays = function(thisDate,days) {
+  var date = new Date(thisDate.valueOf());
+  thisDate.setDate(date.getDate() + days);
+  return thisDate;
+}
+
+function getDates(startDate, stopDate) {
+  var dateArray = new Array();
+  var currentDate = new Date (startDate);
+  while (currentDate <= new Date (stopDate)) {
+      //dateArray.push((new Date (currentDate)).toISOString().slice(0,10));
+      dateArray.push(formatDate(currentDate));
+      currentDate = addDays(new Date (currentDate),1);
+  }
+  return dateArray;
+}
+
+function Last7Days () {
+  var result = [];
+  for (var i=0; i<7; i++) {
+      var d = new Date();
+      d.setDate(d.getDate() - i);
+      result.push( formatDate(d) )
+  }
+
+  return result;;
+}
+
 passport.use(new Strategy(
   async function(username, password, cb) {
       console.log("user: pass:"+username+" "+password);
@@ -44,7 +95,8 @@ passport.deserializeUser(async function(id, cb) {
 
 router.get('/login',
 function(req, res) {
-  if (!req.isAuthenticated || !req.isAuthenticated()) {      
+  if (!req.isAuthenticated || !req.isAuthenticated()) {  
+    
     res.render('users/login', { message: req.flash('error') });    
     
   }else{
@@ -176,11 +228,23 @@ router.get('/graphs', require('connect-ensure-login').ensureLoggedIn("/"),
 router.get('/getGraphs', require('connect-ensure-login').ensureLoggedIn("/"),
 async function (req, res) {
 
-  console.log("get graphs");
+  console.log("get graphs:: ");
+  console.log(req.query.type);
   console.log(req.user._id);
-  let docs= await dietData.getDietDataByUserId(req.user._id);
-  
+  let docs={};
+  let alldates={};
+  if(req.query.type == "onemonth"){
+    setFirstAndLastDayOfLastMonth();
+    alldates=getDates(prevMonthFirstDate,prevMonthLastDate);
+    docs= await dietData.getDatesinRangeForUser(req.user._id,alldates);
+  }
+  else if(req.query.type == "oneweek"){
+    console.log(Last7Days());
+    alldates=Last7Days();
+    docs= await dietData.getDatesinRangeForUser(req.user._id,alldates);
+  }
   console.log(docs);
+  
   let datesArray = [];
     let nutritionValues = [];
   try {
@@ -215,6 +279,8 @@ async function (req, res) {
   }
 	
 });
+
+
 // Register User
 router.post('/register', multipartMiddleware, async function(req, res){
 

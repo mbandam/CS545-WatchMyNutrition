@@ -82,6 +82,16 @@ async function runSetup() {
 
     dietCollection = await db.createCollection(diet);
 
+   /* var dietJack0 = dietDoc(userJack._id, "04/01/2018", 8, 5, 5, 6);
+    var dietJack1 = dietDoc(userJack._id, "04/02/2018", 7, 6, 2, 5);
+    var dietJack2 = dietDoc(userJack._id, "04/03/2018", 6, 9, 9, 8);
+    var dietJack3 = dietDoc(userJack._id, "04/05/2018", 7, 5, 9, 7);
+    var dietJack4 = dietDoc(userJack._id, "04/06/2018", 8, 5, 5, 6);
+    var dietJack5 = dietDoc(userJack._id, "04/07/2018", 7, 5, 9, 7);
+    var dietJack6 = dietDoc(userJack._id, "04/08/2018", 6, 9, 9, 8);
+    var dietJack7 = dietDoc(userJack._id, "04/09/2018", 4, 7, 4, 5);
+    var dietJack8 = dietDoc(userJack._id, "04/10/2018", 2, 10, 9, 7);*/
+
     var dietJack0 = dietDoc(userJack._id, "03/24/2018", 8, 5, 5, 6);
     var dietJack1 = dietDoc(userJack._id, "03/25/2018", 7, 6, 2, 5);
     var dietJack2 = dietDoc(userJack._id, "03/26/2018", 6, 9, 9, 8);
@@ -90,8 +100,6 @@ async function runSetup() {
     var dietJack5 = dietDoc(userJack._id, "03/29/2018", 7, 5, 9, 7);
     var dietJack6 = dietDoc(userJack._id, "03/30/2018", 6, 9, 9, 8);
     var dietJack7 = dietDoc(userJack._id, "03/31/2018", 4, 7, 4, 5);
-    var dietJack8 = dietDoc(userJack._id, "04/01/2018", 2, 10, 9, 7);
-    var dietJack9 = dietDoc(userJack._id, "04/02/2018", 9, 9, 9, 9);
     var dietJack10 = dietDoc(userJack._id, "03/23/2018", 2, 10, 9, 7);
     var dietJack11 = dietDoc(userJack._id, "03/22/2018", 7, 6, 2, 5);
     var dietJack12 = dietDoc(userJack._id, "03/21/2018", 6, 9, 9, 8);
@@ -100,8 +108,6 @@ async function runSetup() {
     var dietJack15 = dietDoc(userJack._id, "03/18/2018", 7, 5, 9, 7);
     var dietJack16 = dietDoc(userJack._id, "03/17/2018", 6, 9, 9, 8);
     var dietJack17 = dietDoc(userJack._id, "03/16/2018", 4, 7, 4, 5);
-    var dietJack18 = dietDoc(userJack._id, "04/15/2018", 7, 5, 9, 7);
-    var dietJack19 = dietDoc(userJack._id, "04/14/2018", 9, 9, 9, 9);
     var dietJack20 = dietDoc(userJack._id, "03/13/2018", 8, 5, 5, 6);
     var dietJack21 = dietDoc(userJack._id, "03/12/2018", 7, 6, 2, 5);
     var dietJack22 = dietDoc(userJack._id, "03/11/2018", 6, 9, 9, 8);
@@ -110,8 +116,6 @@ async function runSetup() {
     var dietJack25 = dietDoc(userJack._id, "03/08/2018", 7, 5, 9, 7);
     var dietJack26 = dietDoc(userJack._id, "03/07/2018", 6, 9, 9, 8);
     var dietJack27 = dietDoc(userJack._id, "03/06/2018", 4, 7, 4, 5);
-    var dietJack28 = dietDoc(userJack._id, "04/05/2018", 2, 10, 9, 7);
-    var dietJack29 = dietDoc(userJack._id, "04/04/2018", 9, 9, 9, 9);
     var dietJack30 = dietDoc(userJack._id, "03/03/2018", 8, 5, 5, 6);
     var dietJack31 = dietDoc(userJack._id, "03/02/2018", 7, 6, 2, 5);
     var dietJack32 = dietDoc(userJack._id, "03/01/2018", 6, 9, 9, 8);
@@ -122,6 +126,14 @@ async function runSetup() {
     var dietJack37 = dietDoc(userJack._id, "02/24/2018", 4, 7, 4, 5);
     var dietJack38 = dietDoc(userJack._id, "02/23/2018", 2, 10, 9, 7);
     var dietJack39 = dietDoc(userJack._id, "02/22/2018", 9, 9, 9, 9);
+    
+    var dietJack8 = dietDoc(userJack._id, "04/06/2018", 2, 10, 9, 7);
+    var dietJack9 = dietDoc(userJack._id, "04/07/2018", 9, 9, 9, 9);
+    var dietJack18 = dietDoc(userJack._id, "04/10/2018", 7, 5, 9, 7);
+    var dietJack19 = dietDoc(userJack._id, "04/09/2018", 9, 9, 9, 9);
+    var dietJack28 = dietDoc(userJack._id, "04/05/2018", 2, 10, 9, 7);
+    var dietJack29 = dietDoc(userJack._id, "04/04/2018", 9, 9, 9, 9);
+    var dietJack40 = dietDoc(userJack._id, "04/08/2018", 2, 10, 9, 7);
 
     dietList = [];
     dietList.push(dietJack0);
@@ -164,6 +176,21 @@ async function runSetup() {
     dietList.push(dietJack37);
     dietList.push(dietJack38);
     dietList.push(dietJack39);
+    dietList.push(dietJack40);
+
+  
+
+    /*dietList = [];
+    dietList.push(dietJack0);
+    dietList.push(dietJack1);
+    dietList.push(dietJack2);
+    dietList.push(dietJack3);
+    dietList.push(dietJack4);
+    dietList.push(dietJack5);
+    dietList.push(dietJack6);
+    dietList.push(dietJack7);
+    dietList.push(dietJack8);*/
+  
 
     
     res = await userCollection.insertMany(usersList);
