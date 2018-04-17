@@ -264,7 +264,7 @@ async function (req, res) {
     docs.sort(function(a,b){
       // Turn your strings into dates, and then subtract them
       // to get a value that is either negative, positive, or zero.
-      return new Date(b.timestamp) - new Date(a.timestamp);
+      return new Date(a.timestamp) - new Date(b.timestamp);
     });
   }
   console.log(docs);
