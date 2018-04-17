@@ -27,7 +27,7 @@ let exportedmethods = {
 
             ]
             
-        }).sort({timestamp:-1}).toArray();
+        }).sort({timestamp:1}).toArray();
         return dietOfUser;
 
        
