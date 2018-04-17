@@ -76,6 +76,7 @@ let exportedmethods = {
         if (data.insertedCount == 0)
             throw "Error insterting data";
         return meal;
+        console.log(meal);
     }, 
 
     async update(meal){
