@@ -41,6 +41,7 @@ router.post('/getMeal', async (req, res, next) => {
     }    
     try {
         let data=await dietData.get(timestamp);
+        
         if(data){
             data.meal=meal.meal;
             data.range=meal.range;
