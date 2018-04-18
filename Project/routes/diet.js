@@ -41,7 +41,7 @@ router.post('/getMeal', async (req, res, next) => {
     let x=new Date();
     let timestamp=formatDate(x);
     //timestamp.setHours(0,0,0,0);
-    console.log(req.body.myRange);
+    //console.log(req.body.myRange);
     let meal = {
         user_id: req.user._id,
         meal: req.body.meal,
@@ -56,12 +56,13 @@ router.post('/getMeal', async (req, res, next) => {
         if(data){
             data.meal=meal.meal;
             data.range=meal.range;
-            data=await dietData.update({"meal": data.meal, "range": data.range});
+            data=await dietData.update(data);
         }
         else 
             data = await dietData.insert(meal); 
-        res.json({ "meal": data });
-        //next();
+            req.flash('success_msg', 'You have succesfully submitted your data!! ');
+        //res.json({ "meal": data });
+        next();
     }
     catch (error) {
         res.json({ "error": error })
