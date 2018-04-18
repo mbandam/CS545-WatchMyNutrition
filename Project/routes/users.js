@@ -68,6 +68,7 @@ function Last7Days () {
   var result = [];
   for (var i=0; i<7; i++) {
       var d = new Date();
+      //console.log(d);
       d.setDate(d.getDate() - i);
       result.push( formatDate(d) )
   }
@@ -278,7 +279,7 @@ async function (req, res) {
       //category array
       var date = doc['timestamp'];
       //series 1 values array
-      var nutritionAverage = doc['average'];
+      var nutritionAverage = doc['avg'];
       
       datesArray.push({"label": date});
       nutritionValues.push({"value" : nutritionAverage});

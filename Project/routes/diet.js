@@ -29,8 +29,17 @@ app.get('/getMeal', function (req, res) {
 
 */
 
+var formatDateComponent = function(dateComponent) {
+    return (dateComponent < 10 ? '0' : '') + dateComponent;
+  };
+  
+  var formatDate = function(date) {
+    return formatDateComponent(date.getMonth() + 1) + '/' + formatDateComponent(date.getDate()) + '/' + date.getFullYear();
+  };
+
 router.post('/getMeal', async (req, res, next) => {
-    let timestamp=new Date().toISOString().slice(0,10);
+    let x=new Date();
+    let timestamp=formatDate(x);
     //timestamp.setHours(0,0,0,0);
     console.log(req.body.myRange);
     let meal = {

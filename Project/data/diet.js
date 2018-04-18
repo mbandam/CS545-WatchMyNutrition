@@ -71,7 +71,7 @@ let exportedmethods = {
             meal.dinner=meal.range;
             break;
         }
-        meal.avg=meal.range/3;
+        meal.avg=Math.round(meal.range/3);
         const data = await dietCollection.insertOne(meal);
         if (data.insertedCount == 0)
             throw "Error insterting data";
@@ -92,7 +92,7 @@ let exportedmethods = {
             meal.dinner=meal.range;
             break;
         }
-        meal.avg=(meal.dinner+meal.lunch+meal.breakfast)/3;
+        meal.avg=Math.round((meal.dinner+meal.lunch+meal.breakfast)/3);
         const data = await dietCollection.updateOne({_id:meal._id},{$set:meal});
         return data;
     }

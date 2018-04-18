@@ -38,7 +38,7 @@ var dietDoc = function (user_id, timestamp, breakfast, lunch, dinner, average) {
         breakfast: breakfast,
         lunch: lunch,
         dinner: dinner,
-        average: average
+        avg: average
     }
 }
 
@@ -128,13 +128,13 @@ async function runSetup() {
     var dietJack38 = dietDoc(userJack._id, "02/23/2018", 2, 10, 9, 7);
     var dietJack39 = dietDoc(userJack._id, "02/22/2018", 9, 9, 9, 9);
     
-    var dietJack8 = dietDoc(userJack._id, "04/16/2018", 2, 10, 9, 7);
-    var dietJack9 = dietDoc(userJack._id, "04/15/2018", 9, 9, 9, 9);
-    var dietJack18 = dietDoc(userJack._id, "04/14/2018", 7, 5, 9, 7);
+    var dietJack8 = dietDoc(userJack._id, "04/10/2018", 2, 10, 9, 7);
+    var dietJack9 = dietDoc(userJack._id, "04/15/2018", 5, 5,5, 5);
+    var dietJack18 = dietDoc(userJack._id, "04/14/2018", 6, 5, 6, 6);
     var dietJack19 = dietDoc(userJack._id, "04/13/2018", 9, 9, 9, 9);
-    var dietJack28 = dietDoc(userJack._id, "04/12/2018", 2, 10, 9, 7);
+    var dietJack28 = dietDoc(userJack._id, "04/12/2018", 7, 8, 8, 8);
     var dietJack29 = dietDoc(userJack._id, "04/11/2018", 9, 9, 9, 9);
-    var dietJack40 = dietDoc(userJack._id, "04/10/2018", 2, 10, 9, 7);
+    var dietJack40 = dietDoc(userJack._id, "04/16/2018", 2, 10, 9, 7);
 
     dietList = [];
     dietList.push(dietJack0);
