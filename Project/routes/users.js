@@ -279,7 +279,7 @@ async function (req, res) {
       //category array
       var date = doc['timestamp'];
       //series 1 values array
-      var nutritionAverage = doc['range'];
+      var nutritionAverage = doc['avg'];
       
       datesArray.push({"label": date});
       nutritionValues.push({"value" : nutritionAverage});
