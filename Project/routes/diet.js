@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const dietData = require("../data/diet");
 const userData = require("../data/users");
+const dietDataCollection = require("../config/mongoCollections").diet;
 
 /* router.post('/diet', multipartMiddleware, async function(req, res){
 
@@ -40,23 +41,23 @@ router.post('/getMeal', async (req, res, next) => {
         foodType: req.body.foodType
     }    
     try {
-        let data=await dietData.get(timestamp);
-        
+        let dietCollection = await dietDataCollection();
+        data = await dietCollection.findOne({"user_id": meal.user_id ,"timestamp":meal.timestamp});
+        //let data=await dietData.get(timestamp);
         if(data){
             data.meal=meal.meal;
             data.range=meal.range;
-            data=await dietData.update(data);
+            data=await dietData.update({"meal": data.meal, "range": data.range});
         }
         else 
-            data = await dietData.insert(meal);
-        //res.json({ "meal": data });
-        next();
+            data = await dietData.insert(meal); 
+        res.json({ "meal": data });
+        //next();
     }
     catch (error) {
         res.json({ "error": error })
+        console.log(error);
     }
 }); 
-
-
 
 module.exports = router;

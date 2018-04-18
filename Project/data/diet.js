@@ -77,7 +77,7 @@ let exportedmethods = {
             throw "Error insterting data";
         return meal;
         console.log(meal);
-    }, 
+    },
 
     async update(meal){
         const dietCollection = await dietType();
@@ -94,7 +94,6 @@ let exportedmethods = {
         }
         meal.avg=(meal.dinner+meal.lunch+meal.breakfast)/3;
         const data = await dietCollection.updateOne({_id:meal._id},{$set:meal});
-        
         return data;
     }
 }
