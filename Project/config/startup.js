@@ -2,6 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 const uuidv1 = require('uuid/v4');
 const users = "usersData"
 const diet = "diet"
+const jsn = require("./6months.json");
 
 const settings = {
     mongoConfig: {
@@ -127,13 +128,13 @@ async function runSetup() {
     var dietJack38 = dietDoc(userJack._id, "02/23/2018", 2, 10, 9, 7);
     var dietJack39 = dietDoc(userJack._id, "02/22/2018", 9, 9, 9, 9);
     
-    var dietJack8 = dietDoc(userJack._id, "04/06/2018", 2, 10, 9, 7);
-    var dietJack9 = dietDoc(userJack._id, "04/07/2018", 9, 9, 9, 9);
-    var dietJack18 = dietDoc(userJack._id, "04/10/2018", 7, 5, 9, 7);
-    var dietJack19 = dietDoc(userJack._id, "04/09/2018", 9, 9, 9, 9);
-    var dietJack28 = dietDoc(userJack._id, "04/05/2018", 2, 10, 9, 7);
-    var dietJack29 = dietDoc(userJack._id, "04/04/2018", 9, 9, 9, 9);
-    var dietJack40 = dietDoc(userJack._id, "04/08/2018", 2, 10, 9, 7);
+    var dietJack8 = dietDoc(userJack._id, "04/16/2018", 2, 10, 9, 7);
+    var dietJack9 = dietDoc(userJack._id, "04/15/2018", 9, 9, 9, 9);
+    var dietJack18 = dietDoc(userJack._id, "04/14/2018", 7, 5, 9, 7);
+    var dietJack19 = dietDoc(userJack._id, "04/13/2018", 9, 9, 9, 9);
+    var dietJack28 = dietDoc(userJack._id, "04/12/2018", 2, 10, 9, 7);
+    var dietJack29 = dietDoc(userJack._id, "04/11/2018", 9, 9, 9, 9);
+    var dietJack40 = dietDoc(userJack._id, "04/10/2018", 2, 10, 9, 7);
 
     dietList = [];
     dietList.push(dietJack0);
@@ -178,27 +179,17 @@ async function runSetup() {
     dietList.push(dietJack39);
     dietList.push(dietJack40);
 
-  
-
-    /*dietList = [];
-    dietList.push(dietJack0);
-    dietList.push(dietJack1);
-    dietList.push(dietJack2);
-    dietList.push(dietJack3);
-    dietList.push(dietJack4);
-    dietList.push(dietJack5);
-    dietList.push(dietJack6);
-    dietList.push(dietJack7);
-    dietList.push(dietJack8);*/
-  
-
-    
     res = await userCollection.insertMany(usersList);
     usersins = await userCollection.find().toArray();
     // console.log(usersins);
 
     //insert and check if inserted
     res = await dietCollection.insertMany(dietList);
+    dietins = await dietCollection.find().toArray();
+    console.log(dietins);
+
+    //dietins=  jsn;
+    res = await dietCollection.insertMany(jsn);
     dietins = await dietCollection.find().toArray();
     console.log(dietins);
 

@@ -27,7 +27,7 @@ let exportedmethods = {
 
             ]
             
-        }).sort({timestamp:-1}).toArray();
+        }).sort({timestamp:1}).toArray();
         return dietOfUser;
 
        
@@ -94,8 +94,7 @@ let exportedmethods = {
         }
         meal.avg=(meal.dinner+meal.lunch+meal.breakfast)/3;
         const data = await dietCollection.updateOne({_id:meal._id},{$set:meal});
-        if (data.modifiedCount == 0)
-            throw "Error updating data";
+        
         return data;
     }
 }

@@ -55,6 +55,15 @@ function getDates(startDate, stopDate) {
   return dateArray;
 }
 
+function addMonths(date, months) {
+  date.setMonth(date.getMonth() + months);
+  return date;
+}
+
+
+addMonths(new Date(), -6); // six months before now
+// Thu Apr 30 2009 01:22:46 GMT-0600 
+
 function Last7Days () {
   var result = [];
   for (var i=0; i<7; i++) {
@@ -243,6 +252,21 @@ async function (req, res) {
     alldates=Last7Days();
     docs= await dietData.getDatesinRangeForUser(req.user._id,alldates);
   }
+  else if(req.query.type == "sixmonths"){
+    console.log("6 months chosen");
+    let sixmonths=addMonths(new Date(),-3);
+    console.log(sixmonths);
+    let alldates=getDates(sixmonths,new Date());
+    console.log(alldates);
+    //alldates=Last7Days();
+    
+    docs= await dietData.getDatesinRangeForUser(req.user._id,alldates);
+    docs.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(a.timestamp) - new Date(b.timestamp);
+    });
+  }
   console.log(docs);
   
   let datesArray = [];
@@ -252,7 +276,7 @@ async function (req, res) {
     for ( index in docs){
       var doc = docs[index];
       //category array
-      var date = doc['timestamp'].slice(0,5);
+      var date = doc['timestamp'];
       //series 1 values array
       var nutritionAverage = doc['average'];
       

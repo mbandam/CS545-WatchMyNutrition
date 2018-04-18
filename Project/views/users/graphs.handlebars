@@ -2,19 +2,19 @@
 
 <link rel="stylesheet" href="/css/style.css"/>
 <link rel="stylesheet" href="/css/bootstrap.css" />
- 
-<hr>
+
 
     <div>
     <div class="row">
-        <div class="col" >
-                <input type="radio" name="timeline" value="oneweek" class="timeline" checked> last week data 
-               
+        <div class="graph" >
+                <input type="radio" id="radio1"  name="timeline" value="oneweek" class="timeline" checked> 
+               <label for="radio1">last week data </label>
                 
-                <input type="radio" name="timeline" value="onemonth" class="timeline"> last month data 
-                
+                <input type="radio" id="radio2"  name="timeline" value="onemonth" class="timeline"> 
+                <label for="radio2">last month data </label>
 
-                <input type="radio" name="timeline" value="sixmonths" class="timeline"> last six months
+                <input type="radio" id="radio3" name="timeline" value="sixmonths" class="timeline"> 
+                <label for="radio3"> last three months</label>
         </div>
         <div class="alert alert-success" name="error" id="error" hidden>
         <p id="error" >No data found. Start logging data to track your nutrition values!</p>
