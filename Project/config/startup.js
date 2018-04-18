@@ -38,7 +38,7 @@ var dietDoc = function (user_id, timestamp, breakfast, lunch, dinner, average) {
         breakfast: breakfast,
         lunch: lunch,
         dinner: dinner,
-        average: average
+        range: average
     }
 }
 
