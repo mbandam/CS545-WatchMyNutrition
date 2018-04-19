@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const dietData = require("../data/diet");
 const userData = require("../data/users");
+const dietDataCollection = require("../config/mongoCollections").diet;
 
 /* router.post('/diet', multipartMiddleware, async function(req, res){
 
@@ -28,10 +29,19 @@ app.get('/getMeal', function (req, res) {
 
 */
 
+var formatDateComponent = function(dateComponent) {
+    return (dateComponent < 10 ? '0' : '') + dateComponent;
+  };
+  
+  var formatDate = function(date) {
+    return formatDateComponent(date.getMonth() + 1) + '/' + formatDateComponent(date.getDate()) + '/' + date.getFullYear();
+  };
+
 router.post('/getMeal', async (req, res, next) => {
-    let timestamp=new Date().toISOString().slice(0,10);
+    let x=new Date();
+    let timestamp=formatDate(x);
     //timestamp.setHours(0,0,0,0);
-    console.log(req.body.myRange);
+    //console.log(req.body.myRange);
     let meal = {
         user_id: req.user._id,
         meal: req.body.meal,
@@ -40,23 +50,24 @@ router.post('/getMeal', async (req, res, next) => {
         foodType: req.body.foodType
     }    
     try {
-        let data=await dietData.get(timestamp);
-        
+        let dietCollection = await dietDataCollection();
+        data = await dietCollection.findOne({"user_id": meal.user_id ,"timestamp":meal.timestamp});
+        //let data=await dietData.get(timestamp);
         if(data){
             data.meal=meal.meal;
             data.range=meal.range;
             data=await dietData.update(data);
         }
         else 
-            data = await dietData.insert(meal);
+            data = await dietData.insert(meal); 
+            req.flash('success_msg', 'You have succesfully submitted your data!! ');
         //res.json({ "meal": data });
         next();
     }
     catch (error) {
         res.json({ "error": error })
+        console.log(error);
     }
 }); 
-
-
 
 module.exports = router;
