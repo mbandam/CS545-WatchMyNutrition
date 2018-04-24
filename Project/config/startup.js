@@ -31,14 +31,15 @@ var makeDoc = function (user_id, name, hashedPassword, dob, gender, location, oc
 
 
 //create diet
-var dietDoc = function (user_id, timestamp, breakfast, lunch, dinner, average) {
+var dietDoc = function (user_id, timestamp, breakfast, lunch, dinner, average, weight) {
     return {
         user_id: user_id,
         timestamp: timestamp,
         breakfast: breakfast,
         lunch: lunch,
         dinner: dinner,
-        avg: average
+        avg: average,
+        weight: weight
     }
 }
 
