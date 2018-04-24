@@ -72,6 +72,7 @@ let exportedmethods = {
             break;
         }
         meal.avg=Math.round(meal.range/3);
+        meal.weight = 0;
         const data = await dietCollection.insertOne(meal);
         if (data.insertedCount == 0)
             throw "Error insterting data";
