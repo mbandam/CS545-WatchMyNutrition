@@ -128,7 +128,7 @@ async function runSetup() {
     var dietJack38 = dietDoc(userJack._id, "02/23/2018", 2, 10, 9, 7);
     var dietJack39 = dietDoc(userJack._id, "02/22/2018", 9, 9, 9, 9);
     
-    var dietJack8 = dietDoc(userJack._id, "04/10/2018", 2, 10, 9, 7);
+    var dietJack8 = dietDoc(userJack._id, "04/17/2018", 2, 10, 9, 7);
     var dietJack9 = dietDoc(userJack._id, "04/15/2018", 5, 5,5, 5);
     var dietJack18 = dietDoc(userJack._id, "04/14/2018", 6, 5, 6, 6);
     var dietJack19 = dietDoc(userJack._id, "04/13/2018", 9, 9, 9, 9);

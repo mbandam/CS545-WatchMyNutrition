@@ -60,7 +60,8 @@ router.post('/getMeal', async (req, res, next) => {
         }
         else 
             data = await dietData.insert(meal); 
-            req.flash('success_msg', 'You have succesfully submitted your data!! ');
+            let msg="Succesfully submitted value "+meal.range+" for "+meal.meal;
+            req.flash('success_msg', msg);
         //res.json({ "meal": data });
         next();
     }
