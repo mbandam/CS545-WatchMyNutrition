@@ -1,14 +1,14 @@
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css" />
-
+<script src="https://unpkg.com/js-datepicker"></script>
 
 <h2 class="amountlabel">Please select the meal and nutrition value to record</h2>
 <div class="container bootstrap snippet">
-   
-            <div class="main-box no-header clearfix">
-               
-                   
-                        <!-- 
+
+    <div class="main-box no-header clearfix">
+
+
+        <!-- 
                        <div class="dropdown">
                            <button class="dropbtn">Select Meal</button>
                            <div class = "dropdown-content">
@@ -18,52 +18,68 @@
     </div>
                        </div>
                                -->
-                        <form method="post" action="/diet/getMeal">
-                      <!--   <p> Please select the Meal: </p>
+        <form method="post" action="/diet/addMeal">
+            <!--   <p> Please select the Meal: </p>
                             <select name="meal">
                                 <option name = "breakfast" value="Breakfast">Breakfast</option>
                                 <option name = "lunch" value="Lunch">Lunch</option>
                                 <option name = "dinner" value="Dinner">Dinner</option>
                             </select>
                             <br></br> -->
-                         <div class="mealType">
-                            
-                            <ul>
-                                <li>
-                                      <input type="radio" id = "first" name="meal" value="breakfast" checked>
-                                        <label for = "first"> Breakfast </label>
-                                         <div class="check"></div> 
-                                </li>
+            <div class="mealType">
+                <input type="text" id="datepicker" name="datepicker" />
+                <script>
+                    let dateBefore7Days = new Date();
+                    dateBefore7Days.setDate(dateBefore7Days.getDate() - 7);
+                    const picker = datepicker('#datepicker', { minDate: dateBefore7Days, maxDate: new Date(), dateSelected: new Date() });
+                </script>
+                <ul>
+                    <li>
+                        <input type="radio" id="first" name="meal" value="breakfast" checked>
+                        <label for="first"> Breakfast </label>
+                        <div class="check"></div>
+                    </li>
 
-                                <li>
-                                    <input type="radio" id = "second" name="meal" value="lunch">
-                                    <label for = "second"> Lunch </label>
-                                     <div class="check"><div class="inside"></div></div>
-                                </li>
+                    <li>
+                        <input type="radio" id="second" name="meal" value="lunch">
+                        <label for="second"> Lunch </label>
+                        <div class="check">
+                            <div class="inside"></div>
+                        </div>
+                    </li>
 
-                                <li>
-                                    <input type="radio" id = "third" name="meal" value="dinner">
-                                    <label for = "third"> Dinner </label>
-                                     <div class="check"><div class="inside"></div></div>
-                                </li>
-                            </ul>
-                        </div>     <!--   <p>Please select the type of food you had: </p>
+                    <li>
+                        <input type="radio" id="third" name="meal" value="dinner">
+                        <label for="third"> Dinner </label>
+                        <div class="check">
+                            <div class="inside"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--   <p>Please select the type of food you had: </p>
                                 <div class="mealType">
                                     <input type="radio" name="foodType" value="nutritious"> Nutritious <br>
 
                                     <input type="radio" name="foodType" value="nonnutritious"> Non Nutritious <br>
                                 </div> -->
-                              <!--  <button id="nut" type="button"> Nutritious</button>
+            <!--  <button id="nut" type="button"> Nutritious</button>
                                 <button id="nonnut" type="button"> Non Nutritious</button>
                                 <br></br>  -->
-                            <div class="slidecontainer">
-                                <input type="range" min="1" max="10" value="5" class="slider" name="myRange" oninput="amount.value=myRange.value">
-                                <label class="amountlabel" for = "myRange"> Value selected </label>
-                                <output class="amount" id="amount" name="amount" for="myRange">5</output>
-                            </div>
-                             <button id="submit" type="submit"> Submit </button> 
-                             <br></br>
-                         <!--   {{#if success_msg }}
+            <div class="slidecontainer">
+                <input type="range" min="1" max="10" value="5" class="slider" name="myRange" oninput="amount.value=myRange.value">
+                <label class="amountlabel" for="myRange"> Value selected </label>
+                <output class="amount" id="amount" name="amount" for="myRange">5</output>
+            </div>
+
+
+             <div class="col-sm-4 form-group">
+                            <label for="weight">Weight in lbs</label>
+                            <input type="text" class="form-control" placeholder="weigth" name="weight" id="weight" pattern="[0-9.]+" minlength="2" maxlength="3" value="{{user.weight}}">
+                         </div>
+            <button id="submit" type="submit"> Submit </button>
+            <br></br>
+            <!--   {{#if success_msg }}
                                 <div class="form-group">
                                     <div class="alert alert-success">
                                         {{ success_msg }}
@@ -71,11 +87,11 @@
                                 </div>
                             {{/if}}
                            -->
-                        </form>
-                    </div>
-               
-           
-        
+        </form>
+    </div>
+
+
+
 </div>
 
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -83,4 +99,3 @@
 <!--
 <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-

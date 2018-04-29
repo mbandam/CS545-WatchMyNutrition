@@ -52,19 +52,19 @@ let exportedMethods = {
             oneUser.hashedPassword = val.hashedPassword;
             oneUser.dob = val.dob;
             oneUser.gender = val.gender;
-            oneUser.activity=val.activity;
+            oneUser.activity = val.activity;
             oneUser.location = val.location;
             oneUser.occupation = val.occupation;
             oneUser.email = val.email;
-            oneUser.weight=val.weight;
-            oneUser.activity=val.activity;
-             allusers.push(oneUser);
+            oneUser.weight = val.weight;
+            oneUser.activity = val.activity;
+            allusers.push(oneUser);
         }
 
         return allusers;
     },
 
-    
+
     async addUser(user, password) {
 
         const userCollection = await usersList();
@@ -76,12 +76,12 @@ let exportedMethods = {
             name: user.name,
             dob: user.dob,
             gender: user.gender,
-            activity:user.activity,
+            activity: user.activity,
             location: user.location,
             occupation: user.occupation,
             email: user.email,
-            weight:user.weight,
-            activity:user.activity
+            weight: user.weight,
+            activity: user.activity
         };
 
 
@@ -97,7 +97,7 @@ let exportedMethods = {
         return await this.getUser(newId);
     },
 
-    
+
 
     async updateUser(user) {
 
@@ -108,17 +108,17 @@ let exportedMethods = {
             name: oldUser.name,
             dob: oldUser.dob,
             gender: oldUser.gender,
-            activity:user.activity,
+            activity: user.activity,
             location: oldUser.location,
             occupation: oldUser.occupation,
             email: oldUser.email,
             hashedPassword: oldUser.hashedPassword,
-            weight:oldUser.weight,
-            activity:oldUser.activity
+            weight: oldUser.weight,
+            activity: oldUser.activity
 
         };
 
-    
+
         //TODO: check here or in html??
         if (user.name != null) {
             updatedUser.name = user.name;
@@ -140,26 +140,26 @@ let exportedMethods = {
             updatedUser.occupation = user.occupation;
         }
 
-       
+
         if (user.email != null) {
             updatedUser.email = user.email;
         }
 
-        if(user.weight!=null){
-            updatedUser.weight=user.weight;
+        if (user.weight != null) {
+            updatedUser.weight = user.weight;
         }
 
-        if(user.activity!=null){
-            updatedUser.activity=user.activity;
+        if (user.activity != null) {
+            updatedUser.activity = user.activity;
         }
-        
-        if ((user.newPwd !== null) && (user.newPwd.length>0)){
+
+        if ((user.newPwd !== null && user.newPwd !== undefined) && (user.newPwd.length > 0)) {
             //console.log("Inside data module updateUser method's Password Update check");
             const hash = await bcrypt.hashAsync(user.newPwd, 16.5);
             updatedUser.hashedPassword = hash;
         }
 
-        
+
         const userCollection = await usersList();
         // our first parameters is a way of describing the document to update;
         // our second will be a replacement version of the document;
@@ -177,15 +177,15 @@ let exportedMethods = {
         return deletionInfo.deletedCount;
     },
 
-    
+
     //compare the passwords
     async comparePassword(password, hash) {
         result = await bcrypt.compareAsync(password, hash);
         return result;
     }
 
-    
-    
+
+
 
 }
 
