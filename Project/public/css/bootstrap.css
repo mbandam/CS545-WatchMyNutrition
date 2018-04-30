@@ -5812,6 +5812,7 @@ button.list-group-item-danger.active:focus {
 .well {
   min-height: 20px;
   padding: 19px;
+  color: black;
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
@@ -7121,7 +7122,7 @@ button.close {
 
 .weightinput{
   size:10;
-  border: 2px solid lightgreen;
+  border: 2px solid #317ad8;
     border-radius: 4px;
     font-weight: 400 !important;
   font-size: 1.35em !important;
@@ -7129,7 +7130,7 @@ button.close {
 
 .rangeoutput{
   size:10;
-  border: 2px solid lightgreen;
+  border: 2px solid #317ad8;
     border-radius: 4px;
     font-weight: 400 !important;
     padding-left:5px;
@@ -7156,6 +7157,15 @@ button.close {
   padding-left: 10px;
   font-weight: 400 !important;
   font-size: 1.35em !important;
+  
+}
+
+.profilelabel{
+  color: #317ad8  !important;
+  
+  
+  font-weight: 400 !important;
+  font-size: 1.20em !important;
   
 }
 
