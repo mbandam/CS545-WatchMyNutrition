@@ -26,13 +26,18 @@
                                 <option name = "dinner" value="Dinner">Dinner</option>
                             </select>
                             <br></br> -->
+                             <div class="row">
             <div class="mealType">
-                <input type="text" id="datepicker" name="datepicker" />
+               
+                    <div class="col"><input type="text" id="datepicker" name="datepicker" /><label class="datelabel">Please select the date </label></div>
+                     
+           
                 <script>
                     let dateBefore7Days = new Date();
                     dateBefore7Days.setDate(dateBefore7Days.getDate() - 7);
                     const picker = datepicker('#datepicker', { minDate: dateBefore7Days, maxDate: new Date(), dateSelected: new Date() });
                 </script>
+               
                 <ul>
                     <li>
                         <input type="radio" id="first" name="meal" value="breakfast" checked>
@@ -56,6 +61,7 @@
                         </div>
                     </li>
                 </ul>
+                
             </div>
             <!--   <p>Please select the type of food you had: </p>
                                 <div class="mealType">
@@ -66,15 +72,14 @@
             <!--  <button id="nut" type="button"> Nutritious</button>
                                 <button id="nonnut" type="button"> Non Nutritious</button>
                                 <br></br>  -->
-            <div class="slidecontainer">
+            <div class="slidecontainer col-md-6">
                 <input type="range" min="1" max="10" value="5" class="slider" name="myRange" oninput="amount.value=myRange.value">
                 <label class="amountlabel" for="myRange"> Value selected </label>
                 <output class="amount" id="amount" name="amount" for="myRange">5</output>
             </div>
 
-            <h2 class="amountlabel">Please enter your Weight: </h2>
-             <div class="col-sm-4 form-group">
-                            <label for="weight">Weight in lbs</label>
+           <div class="col-md-6 ">
+                            <label for="weight" class="amountlabel">Weight(lbs)- Please update once a day</label>
                             <input type="text" class="form-control" max="400" placeholder="weigth" name="weight" id="weight" pattern="[0-9.]+" minlength="2" maxlength="3" value="{{user.weight}}">
                          </div>
             <button id="submit" type="submit"> Submit </button>

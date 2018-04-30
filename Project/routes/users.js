@@ -14,6 +14,7 @@ cloudinary.config({
   api_secret: 'YoIwSpXNsaiRXNNB1EDp_gGmhOs'
 });
 var setCookie = require('set-cookie-parser');
+var Correlation = require('node-correlation');
 
 let prevMonthLastDate=0;
 let prevMonthFirstDate=0; 
@@ -272,6 +273,9 @@ async function (req, res) {
   
   let datesArray = [];
     let nutritionValues = [];
+    let weightvalues=[];
+    var w=[];
+    var n=[];
   try {
     
     for ( index in docs){
@@ -280,18 +284,63 @@ async function (req, res) {
       var date = doc['timestamp'];
       //series 1 values array
       var nutritionAverage = doc['avg'];
+      n.push(nutritionAverage);
+      var weight=doc['weight'];
+      weightvalues.push({"value" : weight});
+      w.push(weight);
+     // console.log(weight);
       
       datesArray.push({"label": date});
       nutritionValues.push({"value" : nutritionAverage});
      
     }
-    var dataset = [
-      {
-        "seriesname" : "Nutrition Values",
-        "data" : nutritionValues
-      }
-    ];
+    
+     let corr=Correlation.calc(w, n);
+    
+    
+    var dataset=[];
+    if(req.query.type == "sixmonths"){
+      dataset = [
+        {
+          "seriesname" : "Nutrition Values",
+          "renderAs": "line",
+          "showValues": "0",
+          "parentYAxis": "P",
+          "data" : nutritionValues
+        },
+        {
+          "seriesName": "Weight",
+          "renderAs": "line",
+          "showValues": "0",
+          "parentYAxis": "S",
+          "seriesname" : "Weight",
+          "data" : weightvalues,
+          "corr":corr
+        }
+      ];
+    }
+    else{
+      dataset = [
+        {
+          "seriesname" : "Nutrition Values",
+          "showValues": "0",
+          "parentYAxis": "P",
+          "data" : nutritionValues
+        },
+        {
+          "seriesName": "Weight",
+          "renderAs": "line",
+          "showValues": "0",
+          "parentYAxis": "S",
+          "seriesname" : "Weight",
+          "data" : weightvalues,
+          "corr":corr
+        }
+      ];
 
+    }
+     
+    
     var response = {
       "dataset" : dataset,
       "categories" : datesArray
@@ -300,10 +349,12 @@ async function (req, res) {
     //res.render('users/graphs',{data:response}  );
   }
   catch (e) {
+    console.log(e);
     res.status(500).json({ error: e });
   }
 	
 });
+
 
 
 // Register User
