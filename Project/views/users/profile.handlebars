@@ -1,23 +1,23 @@
 <div class="container">
-    <h2 class="well">My Profile</h2>
+    <h2 class="col-md-12 well">My Profile</h2>
     {{#if errors}} 
     {{#each errors}}
     <div class="alert alert-danger">{{msg}}</div>
     {{/each}} {{/if}}
-    <div class="col-lg-12 well">
+    <div class="col-md-12 well">
         <div class="row">
             <form method="post" action="/users/profile" id="myProfileForm" enctype="multipart/form-data">
                 <!-- left column -->
                 
-                <div class="col-sm-12">
+                <div class="col-md-12">
                     <div class="row">
-                        <div class="col-sm-6 form-group">
-                            <label>Full Name</label>
+                        <div class="col-md-6 form-group">
+                            <label class="profilelabel">Full Name</label>
                             <input type="text" class="form-control" placeholder="Full Name" name="name" id="name" pattern="[A-Za-z' ]+" minlength="2" maxlength="80" value="{{user.name}}" disabled="disabled">
                         </div>
                         <input type="hidden" id="name2" name="name" value="{{user.name}}">
-                        <div class="col-sm-6 form-group">
-                            <label for="gender">Gender</label>
+                        <div class="col-md-6 form-group">
+                            <label  class="profilelabel" for="gender">Gender</label>
                             <select class="form-control" name="gender" id="gender" disabled="disabled">
                                 {{#select user.gender}}
                                 <option value="M">Male</option>
@@ -29,26 +29,26 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-sm-4 form-group">
-                            <label for="dob">Date of Birth</label>
+                        <div class="col-md-4 form-group">
+                            <label  class="profilelabel" for="dob">Date of Birth</label>
                             <input class="form-control" id="dob" name="dob" placeholder="MM/DD/YYY" type="text" value="{{user.dob}}" disabled="disabled">
                         </div>
                         <input type="hidden" name="dob" value="{{user.dob}}"> 
 
-                        <div class="col-sm-4 form-group">
-                            <label for="weight">Weight in lbs</label>
+                        <div class="col-md-4 form-group">
+                            <label  class="profilelabel" for="weight">Weight in lbs</label>
                             <input type="text" class="form-control" placeholder="weigth" name="weight" id="weight" pattern="[0-9.]+" minlength="2" maxlength="4" value="{{user.weight}}">
                          </div>
                     </div>
 
-                        <div class="col-sm-4 form-group">
-                            <label for="location">Location</label>
+                        <div class="col-md-4 form-group">
+                            <label   class="profilelabel" for="location">Location</label>
                             <input type="text" class="form-control" placeholder="Location" name="location" value={{ user.location }}>
                         
                         </div>
 
-                        <div class="col-sm-4 form-group">
-                            <label>Occupation</label>
+                        <div class="col-md-4 form-group">
+                            <label class="profilelabel" >Occupation</label>
                             
                             <select class="custom-select form-control" name="occupation">
                                 {{#select user.occupation}}
@@ -58,8 +58,8 @@
                             </select>
                         </div>
 
-                        <div class="col-sm-4 form-group">
-                            <label>Activity level</label>
+                        <div class="col-md-6 form-group">
+                            <label  class="profilelabel" >Activity level</label>
                             
                             <select class="custom-select form-control" name="activity">
                                 {{#select user.activity}}
@@ -75,25 +75,27 @@
 
 
                     
-                    <div class="form-group">
-                        <label for="email">Email</label>
+                    <div class="col-md-6 form-group">
+                        <label  class="profilelabel" for="email">Email</label>
                         <input type="email" class="form-control" placeholder="Email" name="email" id="email" value="{{user.email}}">
                     </div>
-                    <div class="form-group">
-                        <label for="user_id">Username</label>
+                    <div class="col-md-6 form-group">
+                        <label  class="profilelabel" for="user_id">Username</label>
                         <input type="text" class="form-control" placeholder="Username" name="user_id" id="user_id" pattern="[a-zA-Z1-9]+[_]{0,1}[a-zA-Z0-9]+" minlength="2" maxlength="50" value="{{user.user_id}}" disabled="disabled">
                     </div>
                     <input type="hidden" id="user_id2" name="user_id" value="{{user.user_id}}">
-                    <div class="form-group">
-                        <label for="newpassword">New Password</label>
+                    <div class="col-md-6 form-group">
+                        <label  class="profilelabel" for="newpassword">New Password</label>
                         <input type="password" class="form-control" placeholder="Password" name="newPwd" id="newpassword" value="{{user.newPwd}}">
                     </div>
-                    <div class="form-group">
-                        <label for="newpasswordconfirm">Confirm New Password</label>
+                    <div class="col-md-6 form-group">
+                        <label  class="profilelabel" for="newpasswordconfirm">Confirm New Password</label>
                         <input type="password" class="form-control" placeholder="Password" name="newPwdConfirm" id="newpasswordconfirm" value="{{user.newPwdConfirm}}">
                     </div>
                     {{!-- <button type="button" class="btn btn-lg btn-info">Submit</button> --}}
                     <button id="submit" type="submit" class="btn btn-default">Update Profile</button>
+                    <br/>
+                    <br/>
                     <button type="reset" class="btn btn-default" value="Reset">Reset</button>
                     <a href="#myModal" class="btn btn-default" data-toggle="modal">Delete my profile</a>
 
@@ -115,7 +117,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <a href="/users/delete/{{user._id}}" class="btn btn-primary" aria-hidden="true">Yes, I am sure</a>
+                    <a href="/users/logout" class="btn btn-primary" aria-hidden="true">Yes, I am sure</a>
                 </div>
             </div>
         </div>
