@@ -7110,7 +7110,8 @@ button.close {
   position: relative !important;
   font-weight: 400 !important;
   font-size: 1.35em !important;
-  padding: 10px 10px  !important;
+  padding-left:10px;
+  padding-top:10px;
 
   margin:  auto !important;
   height: 30px !important;
@@ -7118,9 +7119,41 @@ button.close {
   cursor: pointer !important;
 }
 
+.weightinput{
+  size:10;
+  border: 2px solid lightgreen;
+    border-radius: 4px;
+    font-weight: 400 !important;
+  font-size: 1.35em !important;
+}
+
+.rangeoutput{
+  size:10;
+  border: 2px solid lightgreen;
+    border-radius: 4px;
+    font-weight: 400 !important;
+    padding-left:5px;
+    padding-right:5px;
+    width:25px!important;
+    font-size: 1.35em !important;
+    display: inline;
+}
+
+.date{
+  size:10;
+  border: 3px solid #317ad8;
+    border-radius: 4px;
+    font-weight: 400 !important;
+    padding-left:5px;
+    padding-right:5px;
+
+    font-size: 1.35em !important;
+}
+
 .datelabel{
   color: #317ad8  !important;
-  display: block !important;
+  margin-right:10px;
+  padding-left: 10px;
   font-weight: 400 !important;
   font-size: 1.35em !important;
   
