@@ -7095,9 +7095,9 @@ button.close {
   position: relative !important;
   font-weight: 400 !important;
   font-size: 1.35em !important;
-  padding: 10px 10px 25px 25px !important;
+  padding: 10px 10px  !important;
 
-  margin: 10px auto !important;
+  margin:  auto !important;
   height: 30px !important;
   z-index: 9 !important;
   cursor: pointer !important;
@@ -7110,12 +7110,20 @@ button.close {
   position: relative !important;
   font-weight: 400 !important;
   font-size: 1.35em !important;
-  padding: 10px 10px 25px 25px !important;
+  padding: 10px 10px  !important;
 
-  margin: 10px auto !important;
+  margin:  auto !important;
   height: 30px !important;
   z-index: 9 !important;
   cursor: pointer !important;
+}
+
+.datelabel{
+  color: #317ad8  !important;
+  display: block !important;
+  font-weight: 400 !important;
+  font-size: 1.35em !important;
+  
 }
 
 #submit{
@@ -7128,7 +7136,8 @@ button.close {
   display: inline-block;
   font-size: 16px;
   border-radius: 12px;
-  width: 100%;
+  width: 90%;
+  margin-top:10px
 }
 
 .graph input[type=radio] {
