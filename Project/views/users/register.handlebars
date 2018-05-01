@@ -12,8 +12,8 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label class="profilelabel">Full Name</label>
-                            <input type="text" class="col-md-11" placeholder="Full Name" name="name" value={{ user.name }}>
+                            <label class="profilelabel" for="name">Full Name</label>
+                            <input type="text" class="col-md-11" placeholder="Full Name" name="name" id="name" value={{ user.name }}>
                         </div>
                         <div class="col-md-4 form-group">
                             <label class="profilelabel">Gender</label>
@@ -28,7 +28,7 @@
                    
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label class="profilelabel">Date of Birth</label>
+                            <label class="profilelabel" for="dob">Date of Birth</label>
                             <input class="form-control" id="dob" name="dob" placeholder="MM/DD/YYY" type="text" value={{ user.dob }}>
                         </div>
                         <div class="col-md-4 form-group">
@@ -36,9 +36,9 @@
                             <input type="text" class="form-control" max="400" placeholder="weigth" name="weight" id="weight" pattern="[0-9.]+" minlength="2" maxlength="3" value="{{user.weight}}">
                          </div>
                           <div class="col-md-6 form-group">
-                            <label class="profilelabel">Occupation</label>
+                            <label class="profilelabel" for="occupation">Occupation</label>
                             
-                            <select class="custom-select form-control" name="occupation">
+                            <select class="custom-select form-control" name="occupation" id="occupation">
                                 {{#select user.occupation}}
                                 <option value="1">Student</option>
                                 <option value="2">Corporate</option>
@@ -46,16 +46,16 @@
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label class="profilelabel">Location</label>
-                            <input type="text" class="form-control" placeholder="Location" name="location" value={{ user.location }}>
+                            <label class="profilelabel" for="location">Location</label>
+                            <input type="text" class="form-control" placeholder="Location" name="location"  id="location" value={{ user.location }}>
                         </div>
                        
                         <br/>
                         <br/>
                         <div class="col-md-6 form-group">
-                            <label class="profilelabel">Activity level</label>
+                            <label class="profilelabel" for="activity">Activity level</label>
                             
-                            <select class="custom-select form-control" name="activity">
+                            <select class="custom-select form-control" name="activity" id="activity">
                                 {{#select user.activity}}
                                 <option value="1">Sedentary: Office worker getting little or no exercise</option>
                                 <option value="2">Moderately active: Construction worker or person running one hour daily</option>
@@ -69,20 +69,20 @@
                     
                        
                     <div class="col-md-6 form-group">
-                        <label class="profilelabel">Email</label>
-                        <input type="email" class="form-control" placeholder="Email" name="email" value={{ user.email }}>
+                        <label class="profilelabel" for="email">Email</label>
+                        <input type="email" class="form-control" placeholder="Email" name="email" id="email" value={{ user.email }}>
                     </div>
                     <div class="col-md-6 form-group">
-                         <label class="profilelabel">Username</label>
-                        <input type="text" class="form-control" placeholder="Username" name="user_id" value={{ user.user_id }}>
+                         <label class="profilelabel" for="user_id">Username</label>
+                        <input type="text" class="form-control" placeholder="Username" name="user_id" id="user_id" value={{ user.user_id }}>
                     </div>
                     <div class="col-md-6 form-group">
-                        <label class="profilelabel">Password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="password" value={{ user.password }}>
+                        <label class="profilelabel" for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password" id="password" value={{ user.password }}>
                     </div>
                     <div class="col-md-6 form-group">
-                        <label class="profilelabel">Confirm Password</label>
-                        <input type="password" class="form-control" placeholder="Password" name="password2" value={{ user.password2 }}>    
+                        <label class="profilelabel" for="password2">Confirm Password</label>
+                        <input type="password" class="form-control" placeholder="Password" name="password2" id="password2" value={{ user.password2 }}>    
                     </div>
                     {{!-- <button type="button" class="btn btn-lg btn-info">Submit</button> --}}
                     <button id="submit" type="submit" class="btn btn-default">Submit</button>
